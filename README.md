@@ -1,7 +1,7 @@
-Primary Term
+Primary Tag
 =================
 
-A WordPress plugin that allows you to enter select a primary term from taxonomy of your choosing
+A WordPress plugin that allows you to enter select a primary tag for a post.
 
 ## Installation
 
