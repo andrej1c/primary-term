@@ -1,7 +1,11 @@
 <?php
 /* 
  * Plugin Name: Primary Tag
+ * Description: WordPress plugin that allows post authors to select a primary tag.
+ * Plugin URI: https://github.com/andrej1c/primary-term
+ * Version: 1.0
  * Author: Andrej Ciho
+ * Author URI: http://andrejciho.com
  */
 
 class AC_Primary_Tag
