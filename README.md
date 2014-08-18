@@ -39,3 +39,7 @@ if ( class_exists( 'AC_Primary_Tag' ) {
 * Not sure how to deal with a situation when a post is not tagged with a term that is selected to be primary. 
 We could hook into javascript, potentially but when javascript isn't enabled in the browser we'd need to 
 disable this feature as well
+
+## Credits
+
+Methods that add the metabox and save value submitted are largely copied and pasted from the Codex (http://codex.wordpress.org/Function_Reference/add_meta_box)
