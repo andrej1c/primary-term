@@ -1,7 +1,11 @@
 <?php
 /* 
  * Plugin Name: Primary Tag
+ * Description: WordPress plugin that allows post authors to select a primary tag.
+ * Plugin URI: https://github.com/andrej1c/primary-term
+ * Version: 1.0
  * Author: Andrej Ciho
+ * Author URI: http://andrejciho.com
  */
 
 class AC_Primary_Tag
@@ -158,6 +162,12 @@ class AC_Primary_Tag
 		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->postmeta WHERE meta_key='%s' AND meta_value=%d", self::POST_META_KEY, $term ) );
 	}
 	
+	/**
+	 * Verifies if given term still exists
+	 *
+	 * @param integer $term_id
+	 * @return boolean|object False if term doesn exist. Term object if it does
+	 */
 	static public function get_term( $term_id ) {
 		$term = get_term_by( 'id',  (int) $term_id, self::TAXONOMY );
 		if ( $term ) {
@@ -168,12 +178,12 @@ class AC_Primary_Tag
 	}
 
 	/**
-	* Filter the list of terms attached to the given post.
-	*
-	* @param array  $terms    List of attached terms.
-	* @param int    $post_id  Post ID.
-	* @param string $taxonomy Name of the taxonomy.
-	*/
+	 * Filter the list of terms attached to the given post to show the primary tag first. Useful for some breadcrumb plugins.
+	 *
+	 * @param array  $terms    List of attached terms.
+	 * @param int    $post_id  Post ID.
+	 * @param string $taxonomy Name of the taxonomy.
+	 */
 	static public function show_primary_tag_first( $terms, $post_id, $taxonomy ) {
 		if ( self::TAXONOMY != $taxonomy ) {
 			return $terms;
@@ -259,6 +269,11 @@ class AC_Primary_Tag
 		return get_post_meta( $post_id, self::POST_META_KEY, true );
 	}
 	
+	/**
+	 * Delete primary tag reference for this post
+	 *
+	 * @param type $post_id
+	 */
 	static public function remove_primary_tag( $post_id ) {
 		delete_post_meta( $post_id, self::POST_META_KEY );
 	}
