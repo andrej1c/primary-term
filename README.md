@@ -31,7 +31,7 @@ if ( class_exists( 'AC_Primary_Tag' ) {
 
 ## Potential improvements
 
-* Could be applied to any taxonomy. Tested with tags only so far. Needs to be tested with hierarchical ones.
+* Could be applied to any taxonomy. Tested with tags only so far. Needs to be tested with hierarchical ones. (Branch any_taxonomy is 90% there for hierarchical taxonomies)
 
 ## Known Issues
 
