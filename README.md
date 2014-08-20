@@ -3,7 +3,7 @@ Primary Term
 
 A WordPress plugin that allows you to enter select a primary term (tag, category, etc.) for a post.
 
-_Added Bonus:_ If you use this plugin with the category taxonomy and have %category% part of your permalink structure, the primary category will be used in your permalink. Also, if you use the Breadcrumb NavXT plugin for breadcrumbs it will use the primary category in the breadcrum as well.
+_Added Bonus:_ If you use this plugin with the category taxonomy and have %category% part of your permalink structure, the primary category will be used in your permalink. Also, if you use the Breadcrumb NavXT plugin for breadcrumbs it will use the primary category in the breadcrumbs as well.
 
 ## Installation
 
