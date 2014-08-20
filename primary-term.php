@@ -22,6 +22,7 @@ class AC_Primary_Term
 		add_action( 'delete_term', array( __CLASS__, 'delete_term' ), 10, 3 );
 		add_filter( 'get_the_terms', array( __CLASS__, 'show_primary_term_first' ), 10, 3 );
 		add_filter( 'wp_dropdown_cats', array( __CLASS__, 'append_0th_option' ), 10, 2 );
+		add_filter( 'post_link_category',  array( __CLASS__, 'primary_category_first' ), 10, 3 );
 
 		self::$post_meta_key      = apply_filters( 'ac_primary_tag_post_meta_key', '_ac_primary_term' );
 		self::$taxonomy           = apply_filters( 'ac_primary_tag_taxonomy', 'post_tag' ); // tested with 'category' and 'post_tag'
@@ -126,19 +127,19 @@ class AC_Primary_Term
 		if ( empty( $post ) ) {
 			return false;
 		}
-		
+
 		$primary_term_id = self::get_primary_term( $post->ID );
 		
 		if ( empty( $primary_term_id ) ) {
 			return;
 		}
-		
+
 		$primary_term = get_term( $primary_term_id, self::$taxonomy );
 		
 		if ( empty( $primary_term ) ) {
 			return;
 		}
-		
+
 		if ( false == $show_as_link ) {
 			return $primary_term->name;
 		} else {
@@ -218,7 +219,7 @@ class AC_Primary_Term
 		return array_merge( $primary_term, $all_other_terms );
 	}
 
-	static public	function append_0th_option( $output, $r ) {
+	static public function append_0th_option( $output, $r ) {
 		if ( 'ac_primary_term_dropdown' != $r['class'] ) {
 			return $output;
 		}
@@ -280,5 +281,33 @@ class AC_Primary_Term
 	static public function remove_primary_term( $post_id ) {
 		delete_post_meta( $post_id, self::$post_meta_key );
 	}
+
+	/**
+	* Filter the category that gets used in the %category% permalink token.
+	*
+	* @since 3.5.0
+	*
+	* @param stdClass $cat  The category to use in the permalink.
+	* @param array    $cats Array of all categories associated with the post.
+	* @param WP_Post  $post The post in question.
+	*/
+	static function primary_category_first( $first_cat, $cats, $post ) {
+	   if ( self::$taxonomy != 'category' ) {
+			return $first_cat;
+		}
+		$current_value = self::get_primary_term( $post->ID );
+
+		if ( $current_value == $first_cat->term_id ) {
+			return $first_cat;
+		}
+
+		foreach ( $cats as $category ) {
+			if ( $category->term_id == $current_value ) {
+				return $category;
+			}
+		}
+
+		return $first_cat;
+   }
 }
 add_action( 'init', 'AC_Primary_Term::init' );
