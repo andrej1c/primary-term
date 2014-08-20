@@ -1,4 +1,4 @@
-Primary Tag
+Primary Term
 =================
 
 A WordPress plugin that allows you to enter select a primary term (tag, category, etc.) for a post
