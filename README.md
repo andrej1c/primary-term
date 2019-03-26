@@ -11,6 +11,12 @@ _Added Bonus:_ If you use this plugin with the category taxonomy and have %categ
 
 ## Displaying primary term in your theme
 
+To retrieve the name of the primary term
+
+```php
+$term_name = apply_filters( 'ac_get_primary_term', '' );
+```
+
 To display the name of the primary term
 
 ```php

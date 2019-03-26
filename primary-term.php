@@ -20,6 +20,7 @@ class AC_Primary_Term
 		add_action( 'save_post', array( __CLASS__, 'save' ) );
 		add_action( 'ac_primary_term', array( __CLASS__, 'display_term' ), 10, 1 );
 		add_action( 'delete_term', array( __CLASS__, 'delete_term' ), 10, 3 );
+		add_filter( 'ac_get_primary_term', array( __CLASS__, 'get_display_term' ), 10, 1 );
 		add_filter( 'get_the_terms', array( __CLASS__, 'show_primary_term_first' ), 10, 3 );
 		add_filter( 'wp_dropdown_cats', array( __CLASS__, 'append_0th_option' ), 10, 2 );
 		add_filter( 'post_link_category',  array( __CLASS__, 'primary_category_first' ), 10, 3 );
