@@ -157,7 +157,7 @@ class AC_Primary_Term
 	 * @param mixed   $deleted_term Copy of the already-deleted term, in the form specified
 	 *                              by the parent function. WP_Error otherwise.
 	 */
-	static public function delete_term( $term, $tt_id, $taxonomy, $deleted_term ) {
+	static public function delete_term( $term, $tt_id, $taxonomy, $deleted_term = null ) {
 		if ( self::$taxonomy != $taxonomy ) {
 			return;
 		}
